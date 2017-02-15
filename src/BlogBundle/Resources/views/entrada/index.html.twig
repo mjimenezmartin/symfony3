@@ -1,0 +1,47 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+	<div class="col-lg-12">
+	<h2>Todas las entradas</h2>
+	<hr>
+	<a href="{{path("blog_add_entrada")}}" class="btn btn-success">Añadir entrada</a>
+	{% for type, messages in app.session.flashbag().all() %}
+		{% for message in messages %}
+			<div class="alert alert-{{type}}"> {{message}} </div>
+		{% endfor %}
+	{% endfor %}
+		<table class="table table-bordered">
+			<thead>
+				<th>Imagen</th>
+				<th>Título</th>
+				<th>Contenido</th>
+				<th>Categoría</th>
+				<th>Etiquetas</th>
+			</thead>
+			<tbody>
+				{% for entrada in entradas %}
+				<tr>
+					<td><img src="{{ asset("uploads/"~entrada.image)}}" alt="Imagen no disponible" style="max-width: 50px;"></td>
+					<td>{{entrada.titulo}}</td>
+					<td>{{entrada.contenido}}</td>
+					<td>{{entrada.categoria.nombre}}</td>
+					<td>
+						{% for etiqueta_repo in entrada.entradaEtiqueta %}
+						    {{etiqueta_repo.etiqueta.nombre}} <br>
+						{% endfor %}
+					</td>
+					{# VIENE DEL VIEW DE CATEGORIA - MODIFICAR if categoria.entradaCategoria|length == 0 #}
+					{% if (app.user.id is defined) and (entrada.usuario.id == app.user.id) %}
+					<td>
+						<a href="{{path("blog_delete_entrada", {"id":entrada.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="{{path("blog_update_entrada", {"id":entrada.id}) }}" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+					</td>
+					{% endif %}
+					{# endif #}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}

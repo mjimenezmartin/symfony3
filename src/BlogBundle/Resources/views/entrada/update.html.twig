@@ -1,0 +1,15 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="col-lg-4">
+
+    <h2>Modificar Entrada {{entrada.titulo}}</h2>
+    <img src="{{ asset("uploads/"~entrada.image)}}" alt="imagen" style="width: 80px;">
+    <hr>
+	{{form_start(form)}}
+	{{form_widget(form.etiqueta, {"value":etiquetas})}}
+	{{form_end(form)}}
+
+</div>
+<div class="clearfix"></div>
+{% endblock %}
