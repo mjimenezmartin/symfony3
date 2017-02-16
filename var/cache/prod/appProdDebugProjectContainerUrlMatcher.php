@@ -28,12 +28,8 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
         $request = $this->request;
 
         // blog_homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'blog_homepage');
-            }
-
-            return array (  '_controller' => 'BlogBundle\\Controller\\EntradaController::indexAction',  '_route' => 'blog_homepage',);
+        if (preg_match('#^/(?P<page>[^/]++)?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_homepage')), array (  '_controller' => 'BlogBundle\\Controller\\EntradaController::indexAction',  'page' => 1,));
         }
 
         if (0 === strpos($pathinfo, '/log')) {
@@ -96,6 +92,11 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_update_categoria')), array (  '_controller' => 'BlogBundle\\Controller\\CategoriaController::updateAction',));
             }
 
+            // blog_see_categoria
+            if (preg_match('#^/categoria/(?P<id>[^/]++)(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_see_categoria')), array (  '_controller' => 'BlogBundle\\Controller\\CategoriaController::verAction',  'page' => 1,));
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/entrada')) {
@@ -107,11 +108,6 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
             // blog_delete_entrada
             if (0 === strpos($pathinfo, '/entrada/delete') && preg_match('#^/entrada/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_delete_entrada')), array (  '_controller' => 'BlogBundle\\Controller\\EntradaController::deleteAction',));
-            }
-
-            // blog_index_entrada
-            if ($pathinfo === '/entrada') {
-                return array (  '_controller' => 'BlogBundle\\Controller\\EntradaController::indexAction',  '_route' => 'blog_index_entrada',);
             }
 
             // blog_update_entrada

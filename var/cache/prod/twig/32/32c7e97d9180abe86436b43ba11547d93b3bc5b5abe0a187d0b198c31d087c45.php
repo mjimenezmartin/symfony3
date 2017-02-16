@@ -21,20 +21,20 @@ class __TwigTemplate_def559ea3afd5532a74276604407d009b5e67a0aa73a1bb64b0a85b6b5a
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d67e8b2744b876e16467ffeb325961b19289f765d516977a668ad6871c7e82cc = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_d67e8b2744b876e16467ffeb325961b19289f765d516977a668ad6871c7e82cc->enter($__internal_d67e8b2744b876e16467ffeb325961b19289f765d516977a668ad6871c7e82cc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BlogBundle:Entrada:index.html.twig"));
+        $__internal_4917be2cbb48e8f38dae1607160cc114678caa9f677449158ebc57ce082827db = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_4917be2cbb48e8f38dae1607160cc114678caa9f677449158ebc57ce082827db->enter($__internal_4917be2cbb48e8f38dae1607160cc114678caa9f677449158ebc57ce082827db_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BlogBundle:Entrada:index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d67e8b2744b876e16467ffeb325961b19289f765d516977a668ad6871c7e82cc->leave($__internal_d67e8b2744b876e16467ffeb325961b19289f765d516977a668ad6871c7e82cc_prof);
+        $__internal_4917be2cbb48e8f38dae1607160cc114678caa9f677449158ebc57ce082827db->leave($__internal_4917be2cbb48e8f38dae1607160cc114678caa9f677449158ebc57ce082827db_prof);
 
     }
 
     // line 3
     public function block_content($context, array $blocks = array())
     {
-        $__internal_936ccb341299fd35eafdf70ec515fbc9714d2288811ad8bc91dc9b4f800aec32 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_936ccb341299fd35eafdf70ec515fbc9714d2288811ad8bc91dc9b4f800aec32->enter($__internal_936ccb341299fd35eafdf70ec515fbc9714d2288811ad8bc91dc9b4f800aec32_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
+        $__internal_62de14fb89c3013e49f287fdd96f20a90175fa90d989cc4e77d6c0a95ab736bb = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_62de14fb89c3013e49f287fdd96f20a90175fa90d989cc4e77d6c0a95ab736bb->enter($__internal_62de14fb89c3013e49f287fdd96f20a90175fa90d989cc4e77d6c0a95ab736bb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 4
         echo "\t<div class=\"col-lg-12\">
@@ -150,11 +150,56 @@ class __TwigTemplate_def559ea3afd5532a74276604407d009b5e67a0aa73a1bb64b0a85b6b5a
         // line 43
         echo "\t\t\t</tbody>
 \t\t</table>
+\t\t";
+        // line 45
+        if (((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) > 1)) {
+            // line 46
+            echo "\t\t\t";
+            $context["page"] = ((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) - 1);
+            // line 47
+            echo "\t\t";
+        }
+        // line 48
+        echo "\t\t<ul class=\"pagination\">
+\t\t\t<li><a href=\"";
+        // line 49
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("blog_homepage", array("page" => (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")))), "html", null, true);
+        echo "\">&laquo;</a></li>
+\t\t\t";
+        // line 50
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(range(1, (isset($context["pages"]) ? $context["pages"] : $this->getContext($context, "pages"))));
+        foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+            // line 51
+            echo "\t\t\t    <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("blog_homepage", array("page" => $context["i"])), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $context["i"], "html", null, true);
+            echo "</a></li>
+\t\t\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 53
+        echo "\t\t";
+        if (((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) < (isset($context["pages"]) ? $context["pages"] : $this->getContext($context, "pages")))) {
+            // line 54
+            echo "\t\t\t";
+            $context["page"] = ((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) + 1);
+            // line 55
+            echo "\t\t";
+        }
+        // line 56
+        echo "\t\t\t<li><a href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("blog_homepage", array("page" => (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")))), "html", null, true);
+        echo "\">&raquo;</a></li>
+\t\t</ul>
 \t</div>
 \t<div class=\"clearfix\"></div>
 ";
         
-        $__internal_936ccb341299fd35eafdf70ec515fbc9714d2288811ad8bc91dc9b4f800aec32->leave($__internal_936ccb341299fd35eafdf70ec515fbc9714d2288811ad8bc91dc9b4f800aec32_prof);
+        $__internal_62de14fb89c3013e49f287fdd96f20a90175fa90d989cc4e77d6c0a95ab736bb->leave($__internal_62de14fb89c3013e49f287fdd96f20a90175fa90d989cc4e77d6c0a95ab736bb_prof);
 
     }
 
@@ -170,7 +215,7 @@ class __TwigTemplate_def559ea3afd5532a74276604407d009b5e67a0aa73a1bb64b0a85b6b5a
 
     public function getDebugInfo()
     {
-        return array (  151 => 43,  144 => 41,  142 => 40,  136 => 37,  132 => 36,  129 => 35,  126 => 34,  123 => 32,  114 => 30,  110 => 29,  105 => 27,  101 => 26,  97 => 25,  93 => 24,  90 => 23,  86 => 22,  75 => 13,  69 => 12,  58 => 10,  53 => 9,  49 => 8,  45 => 7,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  194 => 56,  191 => 55,  188 => 54,  185 => 53,  174 => 51,  170 => 50,  166 => 49,  163 => 48,  160 => 47,  157 => 46,  155 => 45,  151 => 43,  144 => 41,  142 => 40,  136 => 37,  132 => 36,  129 => 35,  126 => 34,  123 => 32,  114 => 30,  110 => 29,  105 => 27,  101 => 26,  97 => 25,  93 => 24,  90 => 23,  86 => 22,  75 => 13,  69 => 12,  58 => 10,  53 => 9,  49 => 8,  45 => 7,  40 => 4,  34 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -227,6 +272,19 @@ class __TwigTemplate_def559ea3afd5532a74276604407d009b5e67a0aa73a1bb64b0a85b6b5a
 \t\t\t\t{% endfor %}
 \t\t\t</tbody>
 \t\t</table>
+\t\t{% if page > 1 %}
+\t\t\t{% set page = page-1 %}
+\t\t{% endif %}
+\t\t<ul class=\"pagination\">
+\t\t\t<li><a href=\"{{path('blog_homepage', {'page':page})}}\">&laquo;</a></li>
+\t\t\t{% for i in 1..pages %}
+\t\t\t    <li><a href=\"{{path('blog_homepage', {'page':i})}}\">{{i}}</a></li>
+\t\t\t{% endfor %}
+\t\t{% if page < pages %}
+\t\t\t{% set page = page+1 %}
+\t\t{% endif %}
+\t\t\t<li><a href=\"{{path('blog_homepage', {'page':page})}}\">&raquo;</a></li>
+\t\t</ul>
 \t</div>
 \t<div class=\"clearfix\"></div>
 {% endblock %}", "BlogBundle:Entrada:index.html.twig", "F:\\xampp\\htdocs\\symfony3\\src\\BlogBundle/Resources/views/Entrada/index.html.twig");

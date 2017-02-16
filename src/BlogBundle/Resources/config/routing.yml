@@ -1,6 +1,6 @@
 blog_homepage:
-    path:     /
-    defaults: { _controller: BlogBundle:Entrada:index }
+    path:     /{page}
+    defaults: { _controller: BlogBundle:Entrada:index, page:1 }
 
 login:
     path:     /login
@@ -39,6 +39,10 @@ blog_index_categoria:
 blog_update_categoria:
     path: /categoria/modificar/{id}
     defaults: { _controller: BlogBundle:Categoria:update }
+
+blog_see_categoria:
+    path: /categoria/{id}/{page}
+    defaults: {_controller: BlogBundle:Categoria:ver, page:1 }
 #entrada
 blog_add_entrada:
     path: /entrada/add
@@ -47,10 +51,6 @@ blog_add_entrada:
 blog_delete_entrada:
     path: /entrada/delete/{id}
     defaults: { _controller: BlogBundle:Entrada:delete }
-
-blog_index_entrada:
-    path: /entrada
-    defaults: { _controller: BlogBundle:Entrada:index }
 
 blog_update_entrada:
     path: /entrada/modificar/{id}

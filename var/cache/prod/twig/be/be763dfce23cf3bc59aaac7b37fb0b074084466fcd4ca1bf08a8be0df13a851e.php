@@ -21,20 +21,20 @@ class __TwigTemplate_bc90b4472967bac15b6758f05c2b3d775e033545684a0b1dc539c997dc9
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_de99b4d8b135f522b8dfa56f14f95cf3b8b75f01775176bf3958cfbb83283eaa = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_de99b4d8b135f522b8dfa56f14f95cf3b8b75f01775176bf3958cfbb83283eaa->enter($__internal_de99b4d8b135f522b8dfa56f14f95cf3b8b75f01775176bf3958cfbb83283eaa_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BlogBundle:Entrada:update.html.twig"));
+        $__internal_7b48b7f152c63a155514f383900264224661ba3f98d2f0c60bcca6259d8b07cb = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_7b48b7f152c63a155514f383900264224661ba3f98d2f0c60bcca6259d8b07cb->enter($__internal_7b48b7f152c63a155514f383900264224661ba3f98d2f0c60bcca6259d8b07cb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BlogBundle:Entrada:update.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_de99b4d8b135f522b8dfa56f14f95cf3b8b75f01775176bf3958cfbb83283eaa->leave($__internal_de99b4d8b135f522b8dfa56f14f95cf3b8b75f01775176bf3958cfbb83283eaa_prof);
+        $__internal_7b48b7f152c63a155514f383900264224661ba3f98d2f0c60bcca6259d8b07cb->leave($__internal_7b48b7f152c63a155514f383900264224661ba3f98d2f0c60bcca6259d8b07cb_prof);
 
     }
 
     // line 3
     public function block_content($context, array $blocks = array())
     {
-        $__internal_000e2548cdaa8cc7df900a867fa06b555e97c745f6285e75991b10356aedf4b9 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_000e2548cdaa8cc7df900a867fa06b555e97c745f6285e75991b10356aedf4b9->enter($__internal_000e2548cdaa8cc7df900a867fa06b555e97c745f6285e75991b10356aedf4b9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
+        $__internal_677e8b0917d381167cfca3b2406f2195dcfb5a061432aae74dff1f22fa26b75c = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_677e8b0917d381167cfca3b2406f2195dcfb5a061432aae74dff1f22fa26b75c->enter($__internal_677e8b0917d381167cfca3b2406f2195dcfb5a061432aae74dff1f22fa26b75c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 4
         echo "<div class=\"col-lg-4\">
@@ -54,7 +54,7 @@ class __TwigTemplate_bc90b4472967bac15b6758f05c2b3d775e033545684a0b1dc539c997dc9
         echo "
 \t";
         // line 10
-        echo $this->env->getRuntime('Symfony\Bridge\Twig\Form\TwigRenderer')->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "etiqueta", array()), 'widget', array("value" => (isset($context["etiquetas"]) ? $context["etiquetas"] : $this->getContext($context, "etiquetas"))));
+        echo $this->env->getRuntime('Symfony\Bridge\Twig\Form\TwigRenderer')->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "etiqueta", array()), 'widget', array("value" => trim((isset($context["etiquetas"]) ? $context["etiquetas"] : $this->getContext($context, "etiquetas")), ",")));
         echo "
 \t";
         // line 11
@@ -65,7 +65,7 @@ class __TwigTemplate_bc90b4472967bac15b6758f05c2b3d775e033545684a0b1dc539c997dc9
 <div class=\"clearfix\"></div>
 ";
         
-        $__internal_000e2548cdaa8cc7df900a867fa06b555e97c745f6285e75991b10356aedf4b9->leave($__internal_000e2548cdaa8cc7df900a867fa06b555e97c745f6285e75991b10356aedf4b9_prof);
+        $__internal_677e8b0917d381167cfca3b2406f2195dcfb5a061432aae74dff1f22fa26b75c->leave($__internal_677e8b0917d381167cfca3b2406f2195dcfb5a061432aae74dff1f22fa26b75c_prof);
 
     }
 
@@ -103,7 +103,7 @@ class __TwigTemplate_bc90b4472967bac15b6758f05c2b3d775e033545684a0b1dc539c997dc9
     <img src=\"{{ asset(\"uploads/\"~entrada.image)}}\" alt=\"imagen\" style=\"width: 80px;\">
     <hr>
 \t{{form_start(form)}}
-\t{{form_widget(form.etiqueta, {\"value\":etiquetas})}}
+\t{{form_widget(form.etiqueta, {\"value\":etiquetas|trim(\",\")})}}
 \t{{form_end(form)}}
 
 </div>

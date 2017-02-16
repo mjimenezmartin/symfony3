@@ -124,4 +124,35 @@ class CategoriaController extends Controller
             "form" => $form->createview()
         ));
     }
+    public function verAction($id,$page){
+        $em = $this->getDoctrine()->getManager();
+        $categoria_repo = $em->getRepository("BlogBundle:Categoria");
+        $categorias = $categoria_repo->find($id);
+
+        $pageSize = 5;
+        $entrada_repo = $em->getRepository("BlogBundle:Entrada");
+        $entradas = $entrada_repo->paginaEntradasCategoria($categorias,$pageSize,$page);
+
+        $totalItems = count($entradas);
+        $pageCount = ceil($totalItems/$pageSize);
+        
+        return $this->render("BlogBundle:Categoria:categoria.html.twig", array(
+            "categorias" => $categorias,
+            "entradas" => $entradas,
+            "page"=> $page,
+            "pages"=>$pageCount
+            ));
+        /*
+        $pageSize = 5;
+        $entradas = $entrada_repo->paginaEntradas($pageSize, $page);
+        $totalItems = count($entradas);
+        $pageCount = ceil($totalItems/$pageSize);
+
+        return $this->render("BlogBundle:Categoria:categoria.html.twig", array(
+            "entradas" => $entradas,
+            "pages" => $pageCount,
+            "page" => $page,
+        ));*/
+
+    }
 }

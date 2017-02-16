@@ -15,16 +15,19 @@ class EntradaController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction(){
+    public function indexAction($page){
 
         $em = $this->getDoctrine()->getManager();
         $entrada_repo = $em->getRepository("BlogBundle:Entrada");
-
-        $entradas = $entrada_repo->findAll();
-
+        $pageSize = 5;
+        $entradas = $entrada_repo->paginaEntradas($pageSize, $page);
+        $totalItems = count($entradas);
+        $pageCount = ceil($totalItems/$pageSize);
 
         return $this->render("BlogBundle:Entrada:index.html.twig", array(
-            "entradas" => $entradas
+            "entradas" => $entradas,
+            "pages" => $pageCount,
+            "page" => $page,
         ));
     }
 
@@ -48,12 +51,15 @@ class EntradaController extends Controller
                 $entrada->setStatus($form->get("status")->getData());
 
                 //SUBIR FICHERO
-                $file = $form["image"]->getData();
-                $ext = $file->guessExtension();
-                $file_name = time().".".$ext;
-                $file->move("uploads", $file_name);
+                if ($form["image"]->getData()) {
+                    $file = $form["image"]->getData();
+                    $ext = $file->guessExtension();
+                    $file_name = time().".".$ext;
+                    $file->move("uploads", $file_name);
 
-                $entrada->setImage($file_name);
+                    $entrada->setImage($file_name);
+                }
+
                 
                 $categoria = $categoria_repo->find($form->get("categoria")->getData());
                 $entrada->setCategoria($categoria);
@@ -83,7 +89,7 @@ class EntradaController extends Controller
                 $message = "Ha ocurrido un error añadiendo la entrada!!";
             }
             $this->session->getFlashBag()->add($status, $message);
-            return $this->redirectToRoute("blog_index_entrada");
+            return $this->redirectToRoute("blog_homepage");
         }
         return $this->render("BlogBundle:Entrada:add.html.twig", array(
             "form" => $form->createView()
@@ -123,7 +129,7 @@ class EntradaController extends Controller
         $nombreImagen = $entrada->getImage();
         $etiquetas = "";
         foreach ($entrada->getEntradaEtiqueta() as $etiqueta) {
-        	$etiquetas .= $etiqueta->getEtiqueta()->getNombre().", ";
+        	$etiquetas .= $etiqueta->getEtiqueta()->getNombre().",";
         }
 
                 
@@ -190,7 +196,7 @@ class EntradaController extends Controller
                 $message = "Ha ocurrido un error modificando la entrada!!";
             }
             $this->session->getFlashBag()->add($status, $message);
-            return $this->redirectToRoute("blog_index_entrada");
+            return $this->redirectToRoute("blog_homepage");
         }
 
         return $this->render("BlogBundle:Entrada:update.html.twig", array(
