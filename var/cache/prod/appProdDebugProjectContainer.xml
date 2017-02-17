@@ -361,7 +361,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>Mv3PWDF4tD</argument>
                 <argument>0</argument>
-                <argument>ndFVS5YynChPhV8lAYPJu-</argument>
+                <argument>TFlIgjhlQqhpxKKCHAHlli</argument>
                 <argument>F:\xampp\htdocs\symfony3\var\cache\prod/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -489,7 +489,7 @@
           <tag name="monolog.logger" channel="cache"/>
           <argument>CR5o8sNdNY</argument>
           <argument>null</argument>
-          <argument>ndFVS5YynChPhV8lAYPJu-</argument>
+          <argument>TFlIgjhlQqhpxKKCHAHlli</argument>
           <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
           <factory class="Symfony\Component\PropertyAccess\PropertyAccessor" method="createCache"/>
         </service>
@@ -510,7 +510,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>MR4JtuM9qZ</argument>
       <argument>0</argument>
-      <argument>ndFVS5YynChPhV8lAYPJu-</argument>
+      <argument>TFlIgjhlQqhpxKKCHAHlli</argument>
       <argument>F:\xampp\htdocs\symfony3\var\cache\prod/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -520,7 +520,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>5IIEh6JJLD</argument>
       <argument>0</argument>
-      <argument>ndFVS5YynChPhV8lAYPJu-</argument>
+      <argument>TFlIgjhlQqhpxKKCHAHlli</argument>
       <argument>F:\xampp\htdocs\symfony3\var\cache\prod/pools</argument>
       <argument type="service" id="monolog.logger.cache"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1350,7 +1350,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>58a59e76bf3eb8.55382004</argument>
+            <argument>58a6bc8d9afb34.86221642</argument>
           </service>
         </argument>
       </argument>
@@ -1484,7 +1484,31 @@
           <service class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
             <tag name="monolog.logger" channel="security"/>
             <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
+              <service class="Symfony\Component\Security\Http\AccessMap" public="false">
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/etiqueta</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/entrada</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                    <argument>ROLE_USER</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+              </service>
             </argument>
             <argument type="service">
               <service class="Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint" public="false">
@@ -1618,7 +1642,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>58a59e76bf3eb8.55382004</argument>
+            <argument>58a6bc8d9afb34.86221642</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -1629,7 +1653,31 @@
             <argument type="service" id="security.token_storage"/>
             <argument type="service" id="debug.security.access.decision_manager"/>
             <argument type="service">
-              <service class="Symfony\Component\Security\Http\AccessMap" public="false"/>
+              <service class="Symfony\Component\Security\Http\AccessMap" public="false">
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/etiqueta</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/entrada</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                    <argument>ROLE_USER</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+              </service>
             </argument>
             <argument type="service" id="security.authentication.manager"/>
           </service>

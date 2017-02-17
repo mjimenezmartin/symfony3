@@ -28,7 +28,7 @@ class appProdDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBun
         $request = $this->request;
 
         // blog_homepage
-        if (preg_match('#^/(?P<page>[^/]++)?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<page>\\d+)?$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_homepage')), array (  '_controller' => 'BlogBundle\\Controller\\EntradaController::indexAction',  'page' => 1,));
         }
 
